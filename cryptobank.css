@@ -1,0 +1,126 @@
+.test {
+  background-color: #8EC5FC;
+  background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+
+}
+
+
+#video-container {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+video {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  /* width:auto; */
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -3;
+}
+
+
+
+.banner-content {
+  position: relative;
+  top: 45%;
+  left: 50%;
+  max-width: 1100px;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.banner-content h1 {
+  font-size: 3em;
+  color: #fff;
+  text-transform: uppercase;
+  background-color: #a5173b85;
+}
+
+.banner-content p {
+  font-size: 0.8em;
+  margin: 10px 0;
+  padding-left: 100px;
+  padding-right: 100px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.img-wrapper {
+  overflow: hidden;
+}
+
+.inner-img {
+  transition: 0.3s;
+}
+
+.inner-img:hover {
+  transform: scale(1.1);
+}
+
+
+.mdi-36px {
+  font-size: 39px;
+  margin-right: 10px;
+}
+
+.download-btn-min-width {
+  min-width: 200px;
+}
+
+svg {
+  text-align: center;
+  font-weight: bold;
+  max-width: 500px;
+  height: 100%;
+}
+
+.min-witdth-150 {
+  min-width: 150px;
+}
+
+.min-height-300 {
+  min-height: 280px;
+}
+
+.min-height-550 {
+  min-height: 550px;
+}
+
+.media-link-icon {
+  color: black;
+  text-decoration: none;
+}
+
+.animate-charcter {
+  text-transform: uppercase;
+  background-image: linear-gradient(-225deg,
+      #231557 0%,
+      #44107a 29%,
+      #ff1361 67%,
+      #fff800 100%);
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 2s linear infinite;
+  display: inline-block;
+  font-size: 3em;
+  font-weight: bold;
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
