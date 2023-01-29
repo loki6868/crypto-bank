@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="icon" type="image/x-icon" href="/images/cryptobank.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- bootstrap 5 & Jquery-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <!-- web3.js -->
+  <script language="javascript" type="text/javascript" src="dist/web3.min.js"></script>
+  <script language="javascript" type="text/javascript" src="dapp.js"></script>
+  <script language="javascript" type="text/javascript" src="stakingAppABI.js"></script>
+</head>
+<body>
+  <div class="clearfix bg-light py-1">
+    <div class="float-start ms-md-5">
+      <a href="index.html" class="text-decoration-none">
+        <img src="images/cryptobank.png" width="40px" alt="">
+        <b class="text-info fs-2 ms-md-2 align-middle">Crypto Bank</b>
+      </a>
+    </div>
+    <div class="float-end me-md-5">
+      <button class="btn bg-info" id="connectNetwork">
+        <img src="images/token/eth.png" height="40px" alt="">
+        <!-- <i class="fa-solid fa-chevron-down"></i> -->
+      </button>
+      <button class="btn bg-info" id="connectMM">
+        <img src="images/metamask.png" height="40px" alt="">
+        <span class="fw-bold ">Connect Wallet</span>
+      </button>
+    </div>
+  </div>
+  <div class="container mt-3">
+    <!-- Nav pills -->
+    <ul class="nav nav-pills" role="tablist">
+      <li class="nav-item bg-light">
+        <a class="nav-link active py-3" data-bs-toggle="pill" href="#ethereum">
+          <img src="images/token/eth.png" height="40px" alt="">
+          <span class="fw-bold fw-bold fs-3 align-middle">Ethereum</span>
+        </a>
+      </li>
+      <li class="nav-item bg-light ms-2" data-bs-toggle="modal" data-bs-target="#msgNetwork">
+        <a class="nav-link py-3" href="#">
+          <img src="images/token/bnb.svg" height="40px" alt="">
+          <span class="fw-bold fw-bold fs-3 align-middle" title="Beta Testing" data-toggle="popover"
+            data-trigger="hover" data-content="Coming soon!">BSC</span>
+        </a>
+      </li>
+      <li class="nav-item bg-light ms-2" data-bs-toggle="modal" data-bs-target="#msgNetwork">
+        <a class="nav-link py-3" href="#">
+          <img src="images/token/tron.png" height="40px" alt="">
+          <span class="fw-bold fw-bold fs-3 align-middle" data-toggle="tooltip" title="Coming soon!">Tron</span>
+        </a>
+      </li>
+      <li class="nav-item bg-light ms-2" data-bs-toggle="modal" data-bs-target="#msgNetwork">
+        <a class="nav-link py-3" href="#">
+          <img src="images/token/arbitrum.png" height="40px" alt="">
+          <span class="fw-bold fw-bold fs-3 align-middle" data-toggle="tooltip" title="Coming soon!">Arbitrum</span>
+        </a>
+      </li>
+      <li class="nav-item bg-light ms-2" data-bs-toggle="modal" data-bs-target="#msgNetwork">
+        <a class="nav-link py-3" href="#">
+          <img src="images/token/all.png" height="40px" alt="">
+          <span class="fw-bold fw-bold fs-3 align-middle" data-toggle="tooltip" title="Coming soon!">More</span>
+        </a>
+      </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div id="ethereum" class="container tab-pane active"><br>
+        <h3 class="text-center">
+          <b class="fs-2">Staked Assets</b>
+          <i class="text-warning" id="staked-assets--loading"></i>
+        </h3>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Asset</th>
+              <th scope="col">Amount staked</th>
+              <th scope="col">Monthly percentage rate</th>
+              <th scope="col">Rewards</th>
+              <th scope="col">Claim</th>
+              <th scope="col">Withdraw</th>
+            </tr>
+          </thead>
+          <tbody id="stakedAssets">
+            <tr>
+              <th scope="row">1</th>
+              <td>---</td>
+              <td>---</td>
+              <td>---</td>
+              <td>---</td>
+              <td>
+                <button type="button" class="btn btn-primary">
+                  Claim
+                </button>
+              </td>
+              <td>
+                <button type="button" class="btn btn-primary">
+                  Withdraw
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 class="text-center fw-bold">Ethereum Network</h3>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Asset</th>
+              <th scope="col">Symbol</th>
+              <th scope="col">Monthly percentage rate</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody id="ethereumMarket">
+            <!-- <tr>
+              <th scope="row">1</th>
+              <td>
+                <img src="" alt="">
+                Ethereum
+              </td>
+              <td>ETH</td>
+              <td>3-10%</td>
+              <td>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                  Stake now
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Ethereum</td>
+              <td>ETH</td>
+              <td>3-10%</td>
+              <td>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                  Stake now
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Ethereum</td>
+              <td>ETH</td>
+              <td>3-10%</td>
+              <td>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                  Stake now
+                </button>
+              </td>
+            </tr> -->
+          </tbody>
+        </table>
+      </div>
+      <!-- <div id="bsc" class="container tab-pane fade">
+        <div id="ethereum" class="container tab-pane active"><br>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Asset</th>
+                <th scope="col">Symbol</th>
+                <th scope="col">Monthly percentage rate</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">2</th>
+                <td>Ethereum</td>
+                <td>2</td>
+                <td>3-10%</td>
+                <td>0.15</td>
+                <td>
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                    Claim
+                  </button>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                    Unstake
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div> -->
+
+    </div>
+    <!-- Modal Stake-->
+    <div class="modal" id="myModal">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">
+              <img src="images/cryptobank.png" width="40px" alt="">
+              <b class="text-info fs-3 ms-md-2 align-middle">Crypto Bank Staking</b>
+            </h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <img src="" id="modal-img-src" height="40px" alt="">
+            <label id="symbol" for="amount" class="fw-bold ms-1 me-2"></label>
+            <input type="number" class="border border-success rounded py-1" id="amount" name="amount" onkeyup="if(this.value<0){this.value= this.value * -1}">
+            <button type="button" class="btn btn-success" id="modal-stake-btnMaximum">Maximum</button>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-info fw-bold text-white px-5" id="btn-stakeModal" data-bs-dismiss="modal">Stake</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Message Network -->
+    <div class="modal" id="msgNetwork">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">⚙️ BETA TESTING </h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+            <p>☑️ Coming soon!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Message Network -->
+    <div class="modal" id="msgWithdraw">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">🗓️ The withdrawal period has not yet been reached!</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+            <p class="fw-bold">☑️ If you need any further assistance, please contact us directly.</p>
+            <p class="fw-bold">Thank you!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <p><i class="fa fa-check-circle"></i> <span id="msgAlert"></span></p>
+    </div>
+
+    <br><br><br> <br>
+    <section class="container-fluid bg-light fixed-bottom text-center fw-bold pt-2">
+      <p>$CBank is the platform token of Crypto Bank Network, and Not Mainnet Yet. Airdrop-retroactive campaign still
+          going on 🔥🔥</p>
+  </section>
+</body>
+
+<style>
+  .alert {
+    display: none;
+    position: fixed;
+    bottom: 100px;
+    right: 0px;
+  }
+</style>
+
+</html>
