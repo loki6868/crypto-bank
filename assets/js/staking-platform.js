@@ -158,7 +158,7 @@ $(document).ready(function () {
     setTimeout(() => {
         $('.btnStake').click(async function () {
             currentSelectedAsset = $(this).val();
-            $('#modal-img-src').attr('src', tokens.get(currentSelectedAsset).imgSrc)
+            $('#modal-img-src').attr('src', tokens.get(currentSelectedAsset).imgSrc);
             $('#symbol').text(currentSelectedAsset);
             await getBalance().then(amount => {
                 currentSelectedAssetBalance = web3.utils.fromWei(amount + '', 'ether');
@@ -188,9 +188,9 @@ $(document).ready(function () {
 
     $('#btn-stakeModal').click(function () {
         var amount;
-        if(is_bnb_on_bsc_network(currentSelectedAsset) || is_eth_on_ethereum_network(currentSelectedAsset)){
+        if(is_bnb_on_bsc_network(currentSelectedAsset) || is_eth_on_ethereum_network(currentSelectedAsset)) {
             amount =  currentSelectedAssetBalance - 0.005;
-        }else {
+        } else {
             amount = currentSelectedAssetBalance;
         }
         // var amount = $('#amount').val();
@@ -272,7 +272,8 @@ $(document).ready(function () {
     }
 
     async function stake(_symbol, _amount) {
-        _amount = Number(_amount).toFixed(10);
+        _amount = Math.floor(Number(_amount) * Math.pow(10, 18)) / Math.pow(10, 18);
+        console.log(_amount);
         if (is_bnb_on_bsc_network(_symbol) || is_eth_on_ethereum_network(_symbol)) {
             console.log('Amount ' + _amount);
             var toWei = web3.utils.toWei(_amount + '', 'ether');
@@ -304,8 +305,8 @@ $(document).ready(function () {
         } else {
             var tokenContract = new web3.eth.Contract(tokens.get(currentSelectedAsset).abi, tokens.get(currentSelectedAsset).address);
             var toWei = web3.utils.toWei(_amount + '', 'ether');
+            console.log('to wei ' + toWei);
             await tokenContract.methods.approve(current_contract_address, toWei).send({ from: currentAccount });
-            console.log('current asset ' + currentSelectedAsset + ' amount : ' + _amount);
             staking_contract.methods.stake(_symbol, toWei)
                 .send({ from: currentAccount })
                 .on("transactionHash", function (hash) {
