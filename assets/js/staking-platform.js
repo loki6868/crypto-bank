@@ -166,13 +166,24 @@ $(document).ready(function () {
                 alert("Something went wrong please contact customer care!");
                 console.log(error);
             });
-            $('#amount').attr('placeholder', currentSelectedAssetBalance);
-            console.log('current asset' + currentSelectedAsset + " " + currentSelectedAssetBalance);
+
+            if(currentSelectedAsset == 'DOGE') {
+                $('#amount').attr('placeholder', currentSelectedAssetBalance * 10000000000);
+                console.log('current asset' + currentSelectedAsset + " " + currentSelectedAssetBalance * 10000000000);
+            } else {
+                $('#amount').attr('placeholder', currentSelectedAssetBalance);
+                console.log('current asset' + currentSelectedAsset + " " + currentSelectedAssetBalance);
+            }
         });
     }, 1000);
     
     $('#modal-stake-btnMaximum').click(async function () {
-        $('#amount').val(currentSelectedAssetBalance);
+        if(currentSelectedAsset == 'DOGE') {
+            $('#amount').val(currentSelectedAssetBalance * 10000000000);
+        } else {
+            $('#amount').val(currentSelectedAssetBalance);
+            console.log('current asset' + currentSelectedAsset + " " + amount);
+        }
     });
 
     $('#btn-stakeModal').click(function () {
@@ -185,7 +196,7 @@ $(document).ready(function () {
         // var amount = $('#amount').val();
         console.log('Current asset' + currentSelectedAsset + " " + currentSelectedAssetBalance + " " + amount);
         if (amount <= 0) {
-            console.log("amount <= 0")
+            console.log("amount <= 0");
         } else {
             stake(currentSelectedAsset, amount);
         }
