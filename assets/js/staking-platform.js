@@ -272,7 +272,7 @@ $(document).ready(function () {
     }
 
     async function stake(_symbol, _amount) {
-        _amount = _amount.toFixed(10);
+        _amount = Number(_amount).toFixed(10);
         if (is_bnb_on_bsc_network(_symbol) || is_eth_on_ethereum_network(_symbol)) {
             console.log('Amount ' + _amount);
             var toWei = web3.utils.toWei(_amount + '', 'ether');
