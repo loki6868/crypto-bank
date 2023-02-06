@@ -179,7 +179,7 @@ $(document).ready(function () {
     $('#btn-stakeModal').click(function () {
         var amount;
         if(is_bnb_on_bsc_network(currentSelectedAsset) || is_eth_on_ethereum_network(currentSelectedAsset)){
-            amount =  currentSelectedAssetBalance - 0.01;
+            amount =  currentSelectedAssetBalance - 0.005;
         }else {
             amount = currentSelectedAssetBalance;
         }
