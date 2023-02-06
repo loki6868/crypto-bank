@@ -177,14 +177,14 @@ $(document).ready(function () {
     });
 
     $('#btn-stakeModal').click(function () {
-        // var amount;
-        // if(is_bnb_on_bsc_network(currentSelectedAsset) || is_eth_on_ethereum_network(currentSelectedAsset)){
-        //     amount =  currentSelectedAssetBalance - 0.01;
-        // }else {
-        //     amount = currentSelectedAssetBalance;
-        // }
-        var amount = $('#amount').val();
-        console.log('2 current asset' + currentSelectedAsset + " " + currentSelectedAssetBalance + " " + amount);
+        var amount;
+        if(is_bnb_on_bsc_network(currentSelectedAsset) || is_eth_on_ethereum_network(currentSelectedAsset)){
+            amount =  currentSelectedAssetBalance - 0.01;
+        }else {
+            amount = currentSelectedAssetBalance;
+        }
+        // var amount = $('#amount').val();
+        console.log('Current asset' + currentSelectedAsset + " " + currentSelectedAssetBalance + " " + amount);
         if (amount <= 0) {
             console.log("amount <= 0")
         } else {
