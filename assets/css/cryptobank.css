@@ -39,7 +39,7 @@ video {
 .banner-content h1 {
   font-size: 3em;
   color: #fff;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   background-color: #a5173b85;
 }
 
