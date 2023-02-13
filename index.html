@@ -72,8 +72,9 @@
                 </div>
             </div>
         </nav>
-        <video autoplay loop id="video-background" muted playsinline>
-            <source src="assets/images/synth-city-5s-3.6m.mp4">
+        <video autoplay loop id="video-background" muted playsinline 
+        poster="assets/images/synth-city.jpg">
+            <source src="assets/images/synth-city-2.5s-1.8m.mp4">
         </video>
         <div class="banner-content">
             <!-- <h1 class="fw-bold">Earn rewards with CBank Staking</h1> -->
@@ -649,7 +650,8 @@
     </section>
 </body>
 <script>
-    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+    document.getElementById("video-background").playbackRate = 0.7
 </script>
 </html>
